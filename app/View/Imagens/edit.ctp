@@ -28,13 +28,13 @@
 				</div>			
 		</div><!-- end col md 3 -->
 		<div class="col-md-9">
-			<?php echo $this->Form->create('Imagen', array('role' => 'form')); ?>
+			<?php echo $this->Form->create('Imagen', array('role' => 'form', 'type'=>'file')); ?>
 
 				<div class="form-group">
 					<?php echo $this->Form->input('id', array('class' => 'form-control', 'placeholder' => 'Id'));?>
 				</div>
 				<div class="form-group">
-					<?php echo $this->Form->input('url', array('class' => 'form-control', 'placeholder' => 'Url'));?>
+					<?php echo $this->Form->input('url', array('class' => 'form-control', 'placeholder' => 'Url', 'type'=>'file'));?>
 				</div>
 				<div class="form-group">
 					<?php echo $this->Form->input('titulo', array('class' => 'form-control', 'placeholder' => 'Titulo'));?>

@@ -34,7 +34,7 @@ class AppController extends Controller {
     var $ano;
 	public $helpers = array('Html', 'Form', 'Session');    
 	public $components = array(
-		'DebugKit.Toolbar',
+		//'DebugKit.Toolbar',
 		'Acl',
         'Auth' => array(
             'authorize' => array(

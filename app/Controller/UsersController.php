@@ -16,7 +16,10 @@ class UsersController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 	
-
+	public function beforeFilter(){
+		parent::beforeFilter();
+		$this->Auth->allow('initDB', 'edit');
+	}
 /**
  * index method
  *
@@ -92,7 +95,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 	        if ($this->Auth->login()) {	        	
 	        	$_SESSION['ano'] = $this->request->data['User']['ano'];
-    	        return $this->redirect($this->Auth->redirect());
+	        	return $this->redirect($this->Auth->redirect());
         	}
         	$this->Session->setFlash(__('Your username or password was incorrect.'));
     	}
@@ -104,21 +107,19 @@ class UsersController extends AppController {
 	}
 
 	public function initDB() {
-      $group = $this->User->Group;
+		$group = $this->User->Group;
 
-      // Allow admins to everything
-      $group->id = 2;
-      $this->Acl->allow($group, 'controllers');
+      	$group->id = 2;
+      	$this->Acl->allow($group, 'controllers');
 
-      // allow managers to posts and widgets
-      $group->id = 3;
-      $this->Acl->deny($group, 'controllers');      
-      $this->Acl->deny($group, 'controllers/index');
+      	$group->id = 3;
+      	$this->Acl->deny($group, 'controllers');
+      	$this->Acl->allow($group, 'controllers/Memorandos');	  	
       
-      $this->Acl->allow($group, 'controllers/users/logout');
+      	$this->Acl->allow($group, 'controllers/users/logout');
 
-      // we add an exit to avoid an ugly "missing views" error message
-      echo "all done";
-      exit;
-  }
+      	// we add an exit to avoid an ugly "missing views" error message
+      	echo "all done";
+      	exit;
+  	}
 }
